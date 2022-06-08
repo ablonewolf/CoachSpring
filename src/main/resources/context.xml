@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="sprots.properties"/>
+    <bean id="addidas" class="com.arka99.coachspring.product.Addidas"/>
+
+    <bean id="nike" class="com.arka99.coachspring.product.Nike"/>
     <bean id="cricket"
             class="com.arka99.coachspring.coach.CricketCoach">
 
+        <constructor-arg ref="addidas"/>
+        <property name="emailAddress" value="coach@cricketcoach.com"/>
+        <property name="team" value="Australia"/>
     </bean>
     <bean id="tennis"
             class="com.arka99.coachspring.coach.TennisCoach">
+        <property name="product" ref="nike"/>
+        <property name="email" value="${rafa.email}"/>
+        <property name="player" value="${rafa.name}"/>
 
     </bean>
 </beans>
