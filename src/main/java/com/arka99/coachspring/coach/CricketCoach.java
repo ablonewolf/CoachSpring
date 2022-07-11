@@ -1,7 +1,10 @@
 package com.arka99.coachspring.coach;
 
 import com.arka99.coachspring.product.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("cricketCoach")
 public class CricketCoach implements Coach {
 
     private Product product;
@@ -31,6 +34,11 @@ public class CricketCoach implements Coach {
     @Override
     public String getProdcut() {
         return this.product.preferredProdcut();
+    }
+
+    @Autowired
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String getEmailAddress() {

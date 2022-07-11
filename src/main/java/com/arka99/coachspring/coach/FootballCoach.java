@@ -4,32 +4,17 @@ import com.arka99.coachspring.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-@Component("tennisCoach")
-public class TennisCoach implements Coach {
-
-    private Product product;
-
-    public TennisCoach() {
-    }
-
+@Component("footballCoach")
+public class FootballCoach  implements Coach{
     @Autowired
-    public TennisCoach(Product product) {
-        this.product = product;
-    }
-
+    private Product product;
     @Override
     public String getDailyWorkout() {
-        return "Practiced 60 minutes to make a perfect ace.";
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+        return "Practiced 1 hour to take a perfect penalty shot.";
     }
 
     @Override
     public String getProdcut() {
         return this.product.preferredProdcut();
     }
-
 }
