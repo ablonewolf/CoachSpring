@@ -2,7 +2,11 @@ package com.arka99.coachspring.coach;
 
 import com.arka99.coachspring.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 
 @Component("tennisCoach")
@@ -14,7 +18,7 @@ public class TennisCoach implements Coach {
     }
 
     @Autowired
-    public TennisCoach(Product product) {
+    public TennisCoach(@Qualifier(value = "goldenWing") Product product) {
         this.product = product;
     }
 
@@ -31,5 +35,16 @@ public class TennisCoach implements Coach {
     public String getProdcut() {
         return this.product.preferredProdcut();
     }
+
+    @PostConstruct
+    public void afterCreation() {
+        System.out.println("Tennis Coach bean has been created.");
+    }
+
+    @PreDestroy
+    public void beforeDestroy() {
+        System.out.println("Tennis Coach bean is about to be destroyed.");
+    }
+
 
 }
